@@ -28,11 +28,10 @@ done
 
 sudo apt-get update
 
-#Claude plugins
-claude plugin marketplace add anthropics/claude-code
+# Claude plugins (commented out because they seem to be pre-installed)
+# claude plugin marketplace add anthropics/claude-code
+# claude plugin marketplace add DataDog/claude-marketplace
 
-# Datadog plugins
-claude plugin marketplace add DataDog/claude-marketplace
 claude plugin install marketplace-auto-update@datadog-claude-plugins --scope user
 claude plugin install dd@datadog-claude-plugins --scope user
 claude plugin install osx-notifications@datadog-claude-plugins --scope user
@@ -40,7 +39,7 @@ claude plugin install osx-notifications@datadog-claude-plugins --scope user
 # claude plugin install atlassian-remote-mcp@datadog-claude-plugins --scope user
 
 # Install superclaude and mcps
-PIPX_HOME=/home/bits/.local pipx_bin_dir=/home/bits/.local/bin pipx install superclaude
+PIPX_HOME=/home/bits/.local PIPX_BIN_DIR=/home/bits/.local/bin pipx install superclaude
 superclaude install
 superclaude mcp --servers sequential-thinking --servers context7 --servers serena
 
