@@ -25,3 +25,24 @@ while read df; do
   mkdir -p "$(dirname "$link")"
   ln -sf "$df" "$link"
 done
+
+sudo apt-get update
+
+#Claude plugins
+claude plugin marketplace add anthropics/claude-code
+
+# Datadog plugins
+claude plugin marketplace add DataDog/claude-marketplace
+claude plugin install marketplace-auto-update@datadog-claude-plugins --scope user
+claude plugin install dd@datadog-claude-plugins --scope user
+claude plugin install osx-notifications@datadog-claude-plugins --scope user
+# while this plugin is recommended, it seems like atlassian mcp was pre-installed
+# claude plugin install atlassian-remote-mcp@datadog-claude-plugins --scope user
+
+# Install superclaude and mcps
+PIPX_HOME=/home/bits/.local pipx_bin_dir=/home/bits/.local/bin pipx install superclaude
+superclaude install
+superclaude mcp --servers sequential-thinking --servers context7 --servers serena
+
+git clone https://github.com/DataDog/experimental.git $HOME/dd/experimental
+ln -s $HOME/dd/experimental/users/vishal.shah/dev $HOME/dev
